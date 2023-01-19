@@ -13,10 +13,51 @@
 	border: none;
 	box-shadow: 0 0 1vw rgba(0,0,0,0.5);
 	background-size: cover;
+	background-color: transparent;
 	border-radius: 0.5vw !important;
 	color: white;
 	font-weight: 600;
 	text-shadow: 0px 0px 1vw rgba(0,0,0,0.7);
+	perspective: 1000px;
+	position: relative;
+	cursor: pointer;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.card-front {
+    z-index: 1;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  box-shadow: 0 0 0 #aaa;
+  z-index: -1;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.card:hover .card-inner {
+  	-webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
 }
 
 html, body {
@@ -74,7 +115,6 @@ input {
 	min-height: 100vh;
 }
 
-
 .delete-wrapper {
 	text-align: right;
 	font-size: 1vw;
@@ -116,7 +156,6 @@ input {
 .day > .state {
 	color: black;
 }
-
 
 .alert {
 	text-align: center;

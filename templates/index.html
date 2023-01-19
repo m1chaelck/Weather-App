@@ -28,15 +28,44 @@
 <div class="cards">
     {% for city in weather %}
     <div class="card night">
-        <div class="delete-wrapper">
-            <form action="/delete/{{ city }}" method="POST">
-                <input type="hidden" name="id" value="{{ city }}">
-                <button class="delete-button" type="submit">&#10006;</button>
-            </form>
+        <div class="card card-inner">
+            <div class="card card-front">
+                <div class="delete-wrapper">
+                    <form action="/delete/{{ city }}" method="POST">
+                        <input type="hidden" name="id" value="{{ city }}">
+                        <button class="delete-button" type="submit">&#10006;</button>
+                    </form>
+                </div>
+                <div class="degrees"><span>{{ weather[city].curr_temp }}<span class="celsius"> °C</span></span></div>
+                <div class="state">{{ weather[city].state }}</div>
+                <div class="city">{{ city }}</div>
+<!--                <a href="/#" class="stretched-link" method="GET"></a>-->
+            </div>
+            <div class="card day card-back">
+                <div class="delete-wrapper">
+                    <form action="/delete/{{ city }}" method="POST">
+                        <input type="hidden" name="id" value="{{ city }}">
+                        <button class="delete-button" type="submit">&#10006;</button>
+                    </form>
+                </div>
+                <div class="card-header">
+                    Next 5 days:
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">First day: {{ weather[city].first_day_temp }}</li>
+                    <li class="list-group-item">Second day: {{ weather[city].second_day_temp }}</li>
+                    <li class="list-group-item">Third day: {{ weather[city].third_day_temp }}</li>
+                    <li class="list-group-item">Fourth day: {{ weather[city].fourth_day_temp }}</li>
+                    <li class="list-group-item">Fifth day: {{ weather[city].fifth_day_temp }}</li>
+                </ul>
+<!--                <div class="state">First day: {{ weather[city].first_day_temp }}</div>-->
+<!--                <div class="state">Second day: {{ weather[city].second_day_temp }}</div>-->
+<!--                <div class="state">Third day: {{ weather[city].third_day_temp }}</div>-->
+<!--                <div class="state">Fourth day: {{ weather[city].fourth_day_temp }}</div>-->
+<!--                <div class="state">Fifth day: {{ weather[city].fifth_day_temp }}</div>-->
+<!--                <a href="/#" class="stretched-link" method="GET"></a>-->
+            </div>
         </div>
-        <div class="degrees"><span>{{ weather[city].temp }}<span class="celsius"> °C</span></span></div>
-        <div class="state">{{ weather[city].state }}</div>
-        <div class="city">{{ city }}</div>
     </div>
     {% endfor %}
 </div>
