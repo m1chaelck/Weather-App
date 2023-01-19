@@ -1,4 +1,6 @@
+import os
 from flask import Flask, render_template, request, redirect, flash
+from dotenv import load_dotenv
 import sys
 import requests
 from flask_sqlalchemy import SQLAlchemy
@@ -6,7 +8,8 @@ import secrets
 import datetime
 
 
-# Flask, SqlAlchemy setup
+# Flask, SqlAlchemygit  setup
+load_dotenv()
 secret = secrets.token_urlsafe(32)
 app = Flask(__name__)
 app.secret_key = secret
@@ -15,7 +18,7 @@ app.config['DEBUG'] = True
 db = SQLAlchemy(app)
 
 # API Key for OpenWeatherMap (requires free registration)
-API_ID = '6db2423a8fba1d1de7cbc8057328717d'
+API_ID = os.getenv('API_ID')
 
 
 class City(db.Model):
